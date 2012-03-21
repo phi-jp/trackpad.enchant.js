@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+        <meta charset=UTF-8 />
+        <title>trackpad.enchant.js - test</title>
+        <style>
+            * {
+                margin: 0px;
+                padding: 0px;
+            }
+        </style>
+        <script src="https://raw.github.com/wise9/enchant.js/master/enchant.js"></script>
+        <script src="../src/trackpad.enchant.js"></script>
+        <script>
+            enchant();
+            
+            window.onload = function() {
+                var game = new Game();
+                
+                game.onload = function() {
+                    var scene = game.rootScene;
+                    scene.backgroundColor = "black";
+                    
+                    var trackpad = new Trackpad();
+                    scene.addChild(trackpad);
+                    
+                    var entity = new Entity();
+                    entity.width = 10;
+                    entity.height= 10;
+                    entity.backgroundColor = "red";
+                    scene.addChild(entity);
+                    
+                    trackpad.ontouchmove = function(e) {
+                        entity.x = e.trackX;
+                        entity.y = e.trackY;
+                        console.log(entity.x, entity.y);
+                    };
+                };
+                
+                game.start();
+            };
+        </script>
+    </head>
+    <body>
+        
+    </body>
+    
+</html>
