@@ -10,6 +10,9 @@
     
     enchant.Trackpad = enchant.Class.create(enchant.Entity, {
         
+        /**
+         * 初期化
+         */
         initialize: function() {
             enchant.Entity.call(this);
             
@@ -28,6 +31,9 @@
             style.borderRadius = "4px";
         },
         
+        /**
+         * イベント起動
+         */
         dispatchEvent: function(e) {
             e.target = this;
             e.localX = e.x - this._offsetX;
@@ -37,10 +43,10 @@
             var rateX = e.localX/this.width;
             var rateY = e.localY/this.height;
             
-            rateX = (rateX < 0) ? 0.0 : ((rateX > 1.0) ? 1.0 : rateX);
-            rateY = (rateY < 0) ? 0.0 : ((rateY > 1.0) ? 1.0 : rateY);
-            e.trackX = rateX * game.width;
-            e.trackY = rateY * game.height;
+            e.rateX = (rateX < 0) ? 0.0 : ((rateX > 1.0) ? 1.0 : rateX);
+            e.rateY = (rateY < 0) ? 0.0 : ((rateY > 1.0) ? 1.0 : rateY);
+            e.trackX = e.rateX * game.width;
+            e.trackY = e.rateY * game.height;
             
             if (this["on" + e.type] != null) this["on" + e.type](e);
             var listeners = this._listeners[e.type];
