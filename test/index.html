@@ -25,6 +25,10 @@
                     
                     var trackpad = new Trackpad();
                     scene.addChild(trackpad);
+                    trackpad.minX = 100;
+                    trackpad.maxX = 320-100;
+                    trackpad.minY = 10;
+                    trackpad.maxY = 320-100;
                     
                     var entity = new Entity();
                     entity.width = 10;
@@ -35,7 +39,7 @@
                     trackpad.ontouchmove = function(e) {
                         entity.x = e.trackX;
                         entity.y = e.trackY;
-                        console.log(entity.x, entity.y);
+                        //console.log(entity.x, entity.y);
                     };
                 };
                 
